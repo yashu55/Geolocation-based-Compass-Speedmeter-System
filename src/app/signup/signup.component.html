@@ -1,35 +1,45 @@
 <app-navbar></app-navbar>
 
-<!--Main Container -->
 <div class="container-fluid my-3">
   <div class="row justify-content-around">
 
-    <!--Login Page -->
     <div class="col-md-7 bg-light shadow px-4 pt-4">
       <h4 class="display-4 ">
         <fa-icon [icon]="faUserPlus"></fa-icon> Sign Up
       </h4>
       <p class="text-secondary">Enter valid sign up details.</p>
       <hr>
-      <!--Login form -->
-      <form class="was-validated" onsubmit="return submitForm()">
+      <div class="alert alert-danger" role="alert" *ngIf="uiInvalidCredential">
+        A simple danger alert—check it out!
+      </div>
+      <form class="was-validated" (submit)="registerHere()" [formGroup]="fbFormGroup">
         <div class="form-group">
-          <label for="fname">Full Name</label>
-          <input type="text" name="fname" id="fname" class="form-control" placeholder="John Dove" aria-describedby="fnamehelpId" required>
-          <small id="fnamehelpId" class="text-muted">*Required</small>
+          <label for="firstname">First Name</label>
+          <input type="text" name="firstname" id="firstname" class="form-control" placeholder="John" aria-describedby="firstnamehelpId" required formControlName="firstname">
+          <small id="firstnamehelpId" class="text-muted">*Required</small>
+        </div>
+        <div class="form-group">
+          <label for="lastname">Last Name</label>
+          <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Dove" aria-describedby="lastnamehelpId" required formControlName="lastname">
+          <small id="lastnamehelpId" class="text-muted">*Required</small>
         </div>
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelpId" placeholder="abc@example.com" pattern="[^\s]+" minlength="3" maxlength="20" required>
+          <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelpId" placeholder="abc@example.com" pattern="[^\s]+" minlength="3" maxlength="20" required formControlName="email">
           <small id="emailHelpId" class="form-text text-muted">*Required</small>
         </div>
         <div class="form-group">
+          <label for="mobile">Mobile</label>
+          <input type="text" name="mobile" id="mobile" class="form-control" placeholder="9881555555" aria-describedby="mobilehelpId" required formControlName="mobile">
+          <small id="mobile" class="text-muted">*Required</small>
+        </div>
+        <div class="form-group">
           <label for="pwd">Password</label>
-          <input type="password" class="form-control" name="pwd" id="pwd" placeholder="Password" minlength="4" maxlength="20" required>
+          <input type="password" class="form-control" name="pwd" id="pwd" placeholder="Password" minlength="4" maxlength="20" required formControlName="password">
           <small id="passwordHelpId" class="form-text text-muted">*Required</small>
         </div>
         <div class="form-group">
-          <button type="submit" class="btn btn-success mr-1">Sign Up!</button>
+          <button type="submit" class="btn btn-success mr-1" [disabled]="!fbFormGroup.valid">Sign Up!</button>
           <button type="reset" class="btn btn-danger ml-1">Reset</button>
         </div>
         <p>Already have an account? <span><a routerLink="/login">Login</a></span></p>
@@ -39,3 +49,49 @@
 </div>
 
 <app-footer></app-footer>
+
+
+<!-- <div class="container-fluid">
+  <div class="row" style="height: 100vh">
+<div class="col bg-warning d-flex flex-column justify-content-center align-items-center">
+  <div>
+    <fa-icon [icon]="faAirFreshener" style="font-size: 54px"></fa-icon>
+  </div>
+  <div class="h3">Welcome to my Appplication</div>
+  <div class="h6">
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid,
+    harum!
+  </div>
+</div>
+
+<div class="col bg-light d-flex flex-column justify-content-center align-items-center" [formGroup]="fbFormGroup">
+  <div class="alert alert-danger" role="alert" *ngIf="uiInvalidCredential">
+    A simple danger alert—check it out!
+  </div>
+
+  <div class="h4">Application Register</div>
+
+  <div>
+    <input type="text" placeholder="Enter Username" class="form-control" formControlastname="username" />
+  </div>
+
+  <div class="mt-1">
+    <input type="password" placeholder="Enter Password" class="form-control" formControlastname="password" />
+  </div>
+
+  <div class="mt-1">
+    <input type="text" placeholder="Enter Email" class="form-control" formControlastname="email" />
+  </div>
+
+  <div class="mt-1">
+    <input type="text" placeholder="Enter Mobile" class="form-control" formControlastname="mobile" />
+  </div>
+
+  <button class="btn btn-sm btn-warning mt-2 mb-2" [disabled]="!fbFormGroup.valid" (click)="registerHere()">
+    Register Here
+  </button>
+
+  <a routerLink="/login">Login Here</a>
+</div>
+</div>
+</div>  -->
