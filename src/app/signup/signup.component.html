@@ -1,0 +1,41 @@
+<app-navbar></app-navbar>
+
+<!--Main Container -->
+<div class="container-fluid my-3">
+  <div class="row justify-content-around">
+
+    <!--Login Page -->
+    <div class="col-md-7 bg-light shadow px-4 pt-4">
+      <h4 class="display-4 ">
+        <fa-icon [icon]="faUserPlus"></fa-icon> Sign Up
+      </h4>
+      <p class="text-secondary">Enter valid sign up details.</p>
+      <hr>
+      <!--Login form -->
+      <form class="was-validated" onsubmit="return submitForm()">
+        <div class="form-group">
+          <label for="fname">Full Name</label>
+          <input type="text" name="fname" id="fname" class="form-control" placeholder="John Dove" aria-describedby="fnamehelpId" required>
+          <small id="fnamehelpId" class="text-muted">*Required</small>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelpId" placeholder="abc@example.com" pattern="[^\s]+" minlength="3" maxlength="20" required>
+          <small id="emailHelpId" class="form-text text-muted">*Required</small>
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password</label>
+          <input type="password" class="form-control" name="pwd" id="pwd" placeholder="Password" minlength="4" maxlength="20" required>
+          <small id="passwordHelpId" class="form-text text-muted">*Required</small>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-success mr-1">Sign Up!</button>
+          <button type="reset" class="btn btn-danger ml-1">Reset</button>
+        </div>
+        <p>Already have an account? <span><a routerLink="/login">Login</a></span></p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
