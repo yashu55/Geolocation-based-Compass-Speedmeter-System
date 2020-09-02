@@ -1,0 +1,87 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark   shadow sticky-top ">
+  <a class="navbar-brand " routerLink=""><span class="align-middle">DIRECTI<fa-icon [icon]="faCompass" style="font-size: 120%;"></fa-icon>NS</span></a>
+  <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse " id="collapsibleNavId">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/login" routerLinkActive="active">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Main Page -->
+<div class="container-fluid mb-4 mt-4">
+  <div class="row justify-content-around">
+    <!--Geo Page -->
+    <div class="col-md-7 bg-light shadow p-4 my-2">
+      <h1>
+        <i class="fa fa-compass"></i> GPS Compass</h1>
+      <p class="text-secondary">Your navigation tool.</p>
+      <hr>
+      <div class="compassContainer container-fluid">
+        <div class="compass">
+          <div id="rose" class="compass__rose">
+            <svg class="compass__rose__dial" viewBox="0 0 130 130" version="1.1" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="65" cy="65" r="56" stroke="black" stroke-width="1" fill="none" />
+              <polyline points="63,9  67,9  65,13" fill="black" />
+              <polyline points="121,63  121,67  119,65" fill="black" />
+              <polyline points="63,121  67,121  65,119" fill="black" />
+              <polyline points="9,63  9,67  11,65" fill="black" />
+              <text x="65" y="4.2" font-size="5" text-anchor="middle" fill="black">N</text>
+              <text x="127" y="67" font-size="5" text-anchor="middle" fill="black">E</text>
+              <text x="65" y="129" font-size="5" text-anchor="middle" fill="black">S</text>
+              <text x="2.8" y="67" font-size="5" text-anchor="middle" fill="black">W</text>
+            </svg>
+          </div>
+          <svg class="compass__pointer" viewBox="0 0 130 130" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <polyline points="60,60  70,60  65,15" fill="#b60000" />
+            <polyline points="60,70  70,70  65,115" fill="black" />
+            <circle cx="65" cy="65" r="7" stroke="#b60000" stroke-width="7" fill="none" />
+          </svg>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-4">
+          <p class="text-center font-weight-bolder">HEADING</p>
+          <p class="text-center font-weight-light headingValue">50deg</p>
+        </div>
+        <div class="col-md-4">
+          <p class="text-center font-weight-bolder">LATITUDE</p>
+          <p class="text-center font-weight-light latValue">20NW</p>
+        </div>
+        <div class="col-md-4">
+          <p class="text-center font-weight-bolder">LONGITUDE</p>
+          <p class="text-center font-weight-light lonValue">40SE</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 bg-light shadow p-4 my-2">
+      <h1> <i class="fa fa-tachometer"></i> GPS Speedometer</h1>
+      <p class="text-secondary">Take a Speed test.</p>
+      <hr>
+      <p class="text-center font-weight-bolder">
+        SPEED
+      </p>
+      <p class="text-center font-weight-light speed-value">
+        40 km/hr
+      </p>
+    </div>
+  </div>
+
+  <div class="row justify-content-around my-2">
+    <div class="col-md-11 bg-light shadow p-4">
+      <h1> <i class="fa fa-map-marker"></i> Location</h1>
+      <p class="text-secondary">This is your current location.</p>
+      <hr>
+      <div class="container-fluid" id="map"></div>
+    </div>
+  </div>
+
+</div>
+
+<app-footer></app-footer>

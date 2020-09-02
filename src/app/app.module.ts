@@ -11,6 +11,7 @@ import { SignupComponent } from './signup/signup.component';
 import { AboutComponent } from './about/about.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { GeolocationComponent } from './geolocation/geolocation.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     AboutComponent,
     ForgotpasswordComponent,
     PagenotfoundComponent,
+    GeolocationComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FontAwesomeModule],
   providers: [],

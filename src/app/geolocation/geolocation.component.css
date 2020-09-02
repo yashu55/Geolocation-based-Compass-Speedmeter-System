@@ -1,0 +1,34 @@
+.compassContainer {
+  position: relative;
+  width: 50%;
+}
+
+.compass {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.compass__rose {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.compass__rose__dial {
+  height: 100%;
+  width: 100%;
+}
+
+.compass__pointer {
+  height: 100%;
+  width: 100%;
+}
+
+#map {
+  height: 450px;
+  width: 100%;
+}
