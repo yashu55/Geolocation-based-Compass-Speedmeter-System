@@ -1,0 +1,14 @@
+<!--Main Container -->
+<div class="container-fluid">
+  <div class="row justify-content-center align-items-center" style="height: 100vh">
+    <div class="col-md-7 bg-light shadow text-center">
+      <h4 class="display-4 p-1">
+        <fa-icon [icon]="faExclamationCircle"></fa-icon>
+      </h4>
+      <p class="text-secondary">Page Not Found - Error 404</p>
+      <hr />
+      <!-- <button type="button" (click)="goBack()" class="btn btn-primary">Back</button> -->
+      <a class="btn btn-primary my-4" routerLink="{{ prevpage }}" role="button">Go Back</a>
+    </div>
+  </div>
+</div>

@@ -10,6 +10,7 @@ import { FooterComponent } from './footer/footer.component';
 import { SignupComponent } from './signup/signup.component';
 import { AboutComponent } from './about/about.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
     SignupComponent,
     AboutComponent,
     ForgotpasswordComponent,
+    PagenotfoundComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FontAwesomeModule],
   providers: [],
