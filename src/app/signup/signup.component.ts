@@ -27,6 +27,7 @@ export class SignupComponent implements OnInit {
     mobile: ['', Validators.required],
   });
 
+  abc = 'form-control';
   constructor(
     private fb: FormBuilder,
     private router: Router,
