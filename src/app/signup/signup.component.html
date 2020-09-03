@@ -6,9 +6,9 @@
       <h4 class="display-4">
         <fa-icon [icon]="faUserPlus"></fa-icon> Sign Up
       </h4>
-      <p class="text-secondary">Enter valid sign up details. {{ responseVar }}</p>
+      <p class="text-secondary">Enter valid sign up details.</p>
       <hr />
-      <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="uiInvalidCredential">
+      <div class="alert alert-danger alert-dismissible fade show text-center" role="alert" *ngIf="uiInvalidCredential">
         <strong>{{ responseVar }}</strong>
         <button type="button" class="close" (click)="uiInvalidCredential = false; errorDiv = true" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>

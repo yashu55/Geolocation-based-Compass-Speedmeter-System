@@ -69,7 +69,7 @@ export class SignupComponent implements OnInit {
           Validators.minLength(8),
           Validators.maxLength(20),
           Validators.pattern(
-            '[\\S]*?[A-Z]+?[\\S]*?[a-z]*?[\\S]*?[0-9]*?[\\S]*?[^a-zA-Z0-9]*?[\\S]*?'
+            '^(?=.*[\\d])(?=.*[a-z])(?=.*[A-Z])(?!.*[\\s]).{8,20}$'
           ),
           //  Validators.pattern('^(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$'),
         ],
@@ -81,7 +81,7 @@ export class SignupComponent implements OnInit {
           Validators.minLength(8),
           Validators.maxLength(20),
           Validators.pattern(
-            '[\\S]*?[A-Z]+?[\\S]*?[a-z]*?[\\S]*?[0-9]*?[\\S]*?[^a-zA-Z0-9]*?[\\S]*?'
+            '^(?=.*[\\d])(?=.*[a-z])(?=.*[A-Z])(?!.*[\\s]).{8,20}$'
           ),
           //   Validators.pattern('^(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$'),
         ],

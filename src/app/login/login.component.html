@@ -12,8 +12,8 @@
       </h4>
       <p class="text-secondary">Enter valid login details.</p>
       <hr>
-      <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="uiInvalidCredential">
-        <strong>Invalid email or password!!</strong> Please Enter valid details
+      <div class="alert alert-danger alert-dismissible fade show text-center" role="alert" *ngIf="uiInvalidCredential">
+        <strong>{{ responseVar }}</strong>
         <button type="button" class="close" (click)="uiInvalidCredential = false" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -22,13 +22,15 @@
       <form (submit)="submitForm()" [formGroup]="fbFormGroup">
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelpId" placeholder="abc@example.com" pattern="[^\s]+" minlength="3" maxlength="20" required formControlName="email">
+          <input type="text" class="form-control" name="email" id="email" aria-describedby="emailHelpId" placeholder="abc@example.com" minlength="3" maxlength="30" required formControlName="email" [class.is-valid]="fbFormGroup.controls['email'].valid" [class.is-invalid]="!fbFormGroup.controls['email'].valid &&
+              fbFormGroup.controls['email'].touched" />
           <small id="emailHelpId" class="form-text text-muted">*Required</small>
         </div>
 
         <div class="form-group">
           <label for="pwd">Password</label>
-          <input type="password" class="form-control" name="pwd" id="pwd" placeholder="Password" minlength="4" maxlength="20" required formControlName="password">
+          <input type="password" class="form-control" name="pwd" id="pwd" placeholder="Password" minlength="8" maxlength="20" required formControlName="password" [class.is-valid]="fbFormGroup.controls['password'].valid" [class.is-invalid]="!fbFormGroup.controls['password'].valid &&
+              fbFormGroup.controls['password'].touched" />
           <small id="passwordHelpId" class="form-text text-muted">*Required</small>
         </div>
         <div class="form-group">

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,20 +12,34 @@ import { HttpClient } from '@angular/common/http';
 export class LoginComponent implements OnInit {
   public faUser = faUser;
   public uiInvalidCredential = false;
+  public responseVar = '';
 
-  public fbFormGroup = this.fb.group({
+  public fbFormGroup: FormGroup = this.fb.group({
     email: [
       '',
       [
         Validators.required,
         Validators.minLength(3),
-        Validators.pattern('^[a-zAZ0-9]+@[a-zAZ0-9]+$'),
+        Validators.maxLength(30),
+        Validators.pattern(
+          '^[a-zA-Z0-9_\\.]+@[a-zA-Z0-9_\\.]+(\\.[a-zA-Z0-9_\\.]+)+$'
+        ),
       ],
     ],
-    password: ['', Validators.required],
+    password: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(20),
+        Validators.pattern(
+          '^(?=.*[\\d])(?=.*[a-z])(?=.*[A-Z])(?!.*[\\s]).{6,12}$'
+        ),
+        //  Validators.pattern('^(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$'),
+      ],
+    ],
   });
 
-  abc = 'form-control';
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -36,7 +50,6 @@ export class LoginComponent implements OnInit {
 
   async submitForm() {
     const data = this.fbFormGroup.value;
-    console.log(data);
     // ajax call
     const url = 'http://localhost:3000/auth-user';
     try {
@@ -44,10 +57,13 @@ export class LoginComponent implements OnInit {
       if (result.opr) {
         sessionStorage.setItem('sid', 'true');
         this.router.navigate(['geolocation']);
-      } else {
+      } else if (result.opr == 'incorrect') {
+        this.responseVar = 'Invalid email or password!!';
         this.uiInvalidCredential = true;
       }
     } catch (err) {
+      this.responseVar =
+        ':-( Unable to connect to server. Please try again later.';
       this.uiInvalidCredential = true;
     }
 
