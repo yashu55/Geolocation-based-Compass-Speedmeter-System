@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
 
   async submitForm() {
     const data = this.fbFormGroup.value;
-
+    console.log(data);
     // ajax call
     const url = 'http://localhost:3000/auth-user';
     try {

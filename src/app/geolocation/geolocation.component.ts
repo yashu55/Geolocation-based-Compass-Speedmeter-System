@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faCompass } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-geolocation',
@@ -7,8 +8,17 @@ import { faCompass } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./geolocation.component.css'],
 })
 export class GeolocationComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (!sessionStorage.getItem('sid')) {
+      this.router.navigate(['login']);
+    }
+  }
   public faCompass = faCompass;
+
+  logoutProcess() {
+    sessionStorage.removeItem('sid');
+    this.router.navigate(['login']);
+  }
 }
