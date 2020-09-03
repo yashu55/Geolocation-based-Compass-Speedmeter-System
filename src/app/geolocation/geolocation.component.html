@@ -29,7 +29,7 @@
       <div class="compassContainer container-fluid">
         <div class="compass">
           <div id="rose" class="compass__rose">
-            <svg class="compass__rose__dial" viewBox="0 0 130 130" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <svg class="compass__rose__dial" viewBox="0 0 130 130" [style.transform]="transformValue" version="1.1" xmlns="http://www.w3.org/2000/svg">
               <circle cx="65" cy="65" r="56" stroke="black" stroke-width="1" fill="none" />
               <polyline points="63,9  67,9  65,13" fill="black" />
               <polyline points="121,63  121,67  119,65" fill="black" />
@@ -52,15 +52,15 @@
       <div class="row">
         <div class="col-md-4">
           <p class="text-center font-weight-bolder">HEADING</p>
-          <p class="text-center font-weight-light headingValue">50deg</p>
+          <p class="text-center font-weight-light headingValue">{{ headingValue }} deg</p>
         </div>
         <div class="col-md-4">
           <p class="text-center font-weight-bolder">LATITUDE</p>
-          <p class="text-center font-weight-light latValue">20NW</p>
+          <p class="text-center font-weight-light latValue">{{ latValue }}</p>
         </div>
         <div class="col-md-4">
           <p class="text-center font-weight-bolder">LONGITUDE</p>
-          <p class="text-center font-weight-light lonValue">40SE</p>
+          <p class="text-center font-weight-light lonValue">{{ lonValue }}</p>
         </div>
       </div>
     </div>
@@ -73,7 +73,7 @@
         SPEED
       </p>
       <p class="text-center font-weight-light speed-value">
-        40 km/hr
+        {{ speed }} km/hr
       </p>
     </div>
   </div>

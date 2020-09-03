@@ -12,7 +12,7 @@ export class SignupComponent implements OnInit {
   public faUserPlus = faUserPlus;
   public uiInvalidCredential = false;
 
-  public fbFormGroup = this.fb.group({
+  public fbFormGroupSignup = this.form.group({
     firstname: ['', Validators.required],
     lastname: ['', Validators.required],
     email: [
@@ -27,9 +27,8 @@ export class SignupComponent implements OnInit {
     mobile: ['', Validators.required],
   });
 
-  abc = 'form-control';
   constructor(
-    private fb: FormBuilder,
+    private form: FormBuilder,
     private router: Router,
     private http: HttpClient
   ) {}
@@ -37,21 +36,21 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {}
 
   async registerHere() {
-    const data = this.fbFormGroup.value;
+    const data = this.fbFormGroupSignup.value;
     console.log(data);
     const url = 'http://localhost:3000/adduser';
     try {
       const result: any = await this.http.post(url, data).toPromise();
       if (result.message) {
         this.uiInvalidCredential = true;
-        this.fbFormGroup.reset();
+        this.fbFormGroupSignup.reset();
       } else {
-        this.fbFormGroup.reset();
+        this.fbFormGroupSignup.reset();
 
         throw new Error();
       }
     } catch (err) {
-      this.fbFormGroup.reset();
+      this.fbFormGroupSignup.reset();
       console.log('Unable to connect to server');
     }
 
