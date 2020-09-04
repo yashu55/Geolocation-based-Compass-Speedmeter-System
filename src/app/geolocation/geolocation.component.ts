@@ -29,7 +29,7 @@ export class GeolocationComponent implements OnInit {
   public faMapMarker = faMapMarker;
   public faTachometerAlt = faTachometerAlt;
 
-  public speed: any = 'NA';
+  public speed: any = 0;
   public headingValue: any = 0;
   public latValue = 0;
   public lonValue = 0;
