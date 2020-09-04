@@ -39,9 +39,9 @@
     </div>
   </div>
   <div class="row justify-content-around my-4">
-    <div class="col-md-5 bg-light shadow px-4 pt-4">
+    <div class="col-md-6 bg-light shadow px-4 pt-4">
       <h4 class="display-4">
-        <fa-icon [icon]="faAddressBook"></fa-icon> Update Password
+        <fa-icon [icon]="faWrench"></fa-icon> Update Password
       </h4>
       <p class="text-secondary">Update your passwrod here.</p>
       <hr>
@@ -52,6 +52,12 @@
         </button>
       </div>
       <form (submit)="Updatepass()" [formGroup]="fbFormGroup" *ngIf="errorDiv">
+        <div class="form-group">
+          <label for="opwd">Old Password</label>
+          <input type="password" class="form-control" name="opwd" id="opwd" placeholder="Old Password" minlength="8" maxlength="20" required formControlName="opassword" [class.is-valid]="fbFormGroup.controls['opassword'].valid" [class.is-invalid]="!fbFormGroup.controls['opassword'].valid &&
+          fbFormGroup.controls['opassword'].touched" />
+          <small id="passwordHelpId" class="form-text text-muted">*Required</small>
+        </div>
         <div class="form-group">
           <label for="pwd">New Password</label>
           <input type="password" class="form-control" name="pwd" id="pwd" placeholder="New Password" minlength="8" maxlength="20" required formControlName="password" [class.is-valid]="fbFormGroup.controls['password'].valid" [class.is-invalid]="!fbFormGroup.controls['password'].valid &&
@@ -71,16 +77,15 @@
     </div>
     <div class="col-md-5 bg-light shadow px-4 pt-4">
       <h4 class="display-4">
-        <fa-icon [icon]="faAddressBook"></fa-icon> Delete Account
+        <fa-icon [icon]="faTrash"></fa-icon> Delete Account
       </h4>
       <p class="text-secondary">Your account will be deleted.</p>
       <hr>
-      <form (submit)="delAcc()">
-        <div class="form-group">
-          <button type="submit" class="btn btn-warning">UDelete Account</button>
-        </div>
-      </form>
-    </div>
+      <p class="text-secondary">Your account will be permentally deleted if you.Your enitre infromation will be lost.
+        Please be sure before deleting the account!!
+      </p>
 
+      <button type="button" (click)="delAcc()" class="btn btn-danger mb-4">Delete Account!!</button>
+    </div>
   </div>
 </div>

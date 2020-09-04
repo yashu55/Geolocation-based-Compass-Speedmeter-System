@@ -2,7 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { faAddressBook } from '@fortawesome/free-solid-svg-icons';
+import {
+  faAddressBook,
+  faTrash,
+  faWrench,
+} from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-accountdetails',
   templateUrl: './accountdetails.component.html',
@@ -19,6 +24,9 @@ export class AccountdetailsComponent implements OnInit {
     private http: HttpClient
   ) {}
   public faAddressBook = faAddressBook;
+  public faTrash = faTrash;
+  public faWrench = faWrench;
+
   public firstname = 'NA';
   public lastname = 'NA';
   public email = sessionStorage['email'] || 'NA';
@@ -52,19 +60,17 @@ export class AccountdetailsComponent implements OnInit {
 
   public fbFormGroup: FormGroup = this.fb.group(
     {
-      email: [
+      opassword: [
         '',
         [
           Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(30),
+          Validators.minLength(8),
+          Validators.maxLength(20),
           Validators.pattern(
-            '^[a-zA-Z0-9_\\.]+@[a-zA-Z0-9_\\.]+(\\.[a-zA-Z0-9_\\.]+)+$'
+            '^(?=.*[\\d])(?=.*[a-z])(?=.*[A-Z])(?!.*[\\s]).{8,20}$'
           ),
         ],
       ],
-      securityquestion: ['', Validators.required],
-      answer: ['', [Validators.required, Validators.maxLength(30)]],
       password: [
         '',
         [
@@ -95,22 +101,16 @@ export class AccountdetailsComponent implements OnInit {
 
   async Updatepass() {
     const data = this.fbFormGroup.value;
-    const url = 'http://localhost:3000/forgotpassword';
+    const url = 'http://localhost:3000/updatepassword';
     try {
       const result: any = await this.http.patch(url, data).toPromise();
       if (result.message) {
         alert('Password Reset Successfully.');
         this.fbFormGroup.reset();
         this.router.navigate(['login']);
-      } else if (result.message == 'wrongsecurityanswer') {
+      } else if (result.message == 'failure') {
         this.fbFormGroup.reset();
-        this.responseVar =
-          'You cannot change the password!! Security question and answer is incorrect.';
-        this.uiInvalidCredential = true;
-        this.errorDiv = false;
-      } else if (result.message == 'emailidnotavailable') {
-        this.fbFormGroup.reset();
-        this.responseVar = 'Email id not registered!!';
+        this.responseVar = 'There was some failure while updating';
         this.uiInvalidCredential = true;
         this.errorDiv = false;
       }

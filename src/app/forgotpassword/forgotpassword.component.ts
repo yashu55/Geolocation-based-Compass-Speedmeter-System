@@ -101,6 +101,11 @@ export class ForgotpasswordComponent implements OnInit {
           'You cannot change the password!! Security question and answer is incorrect.';
         this.uiInvalidCredential = true;
         this.errorDiv = false;
+      } else if (result.message == 'emailidnotavailable') {
+        this.fbFormGroup.reset();
+        this.responseVar = 'Email id not registered!!';
+        this.uiInvalidCredential = true;
+        this.errorDiv = false;
       }
     } catch (err) {
       this.fbFormGroup.reset();
