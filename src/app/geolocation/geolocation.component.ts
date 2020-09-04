@@ -149,7 +149,7 @@ export class GeolocationComponent implements OnInit {
           },
           (err) => {
             console.error(err); //console.log the error
-            alert('Hey, you gotta allow that to happen!');
+            //alert('Hey, you gotta allow that to happen!');
           }
         );
       }, 3000);

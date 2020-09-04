@@ -1,1 +1,86 @@
-<p>accountdetails works!</p>
+<div class="container-fluid my-3">
+  <div class="row justify-content-around">
+    <div class="col-md-7 bg-light shadow px-4 pt-4">
+      <h4 class="display-4">
+        <fa-icon [icon]="faAddressBook"></fa-icon> Account
+      </h4>
+      <p class="text-secondary">Your account info.</p>
+      <hr>
+      <h2 class="text-dark text-center ">Details</h2>
+
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr class="bg-secondary text-light">
+              <th scope="col">Field</th>
+              <th scope="col">Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="col">First Name:</th>
+              <td>{{ firstname }}</td>
+            </tr>
+            <tr>
+              <th scope="col">Last Name:</th>
+              <td>{{ lastname }}</td>
+            </tr>
+            <tr>
+              <th scope="col">Email Id:</th>
+              <td>{{ email }}</td>
+            </tr>
+            <tr>
+              <th scope="col">Mobile No.:</th>
+              <td>{{ mobile }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-around my-4">
+    <div class="col-md-5 bg-light shadow px-4 pt-4">
+      <h4 class="display-4">
+        <fa-icon [icon]="faAddressBook"></fa-icon> Update Password
+      </h4>
+      <p class="text-secondary">Update your passwrod here.</p>
+      <hr>
+      <div class="alert alert-danger alert-dismissible fade show text-center" role="alert" *ngIf="uiInvalidCredential">
+        <strong>{{ responseVar }}</strong>
+        <button type="button" class="close" (click)="uiInvalidCredential = false; errorDiv = true" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form (submit)="Updatepass()" [formGroup]="fbFormGroup" *ngIf="errorDiv">
+        <div class="form-group">
+          <label for="pwd">New Password</label>
+          <input type="password" class="form-control" name="pwd" id="pwd" placeholder="New Password" minlength="8" maxlength="20" required formControlName="password" [class.is-valid]="fbFormGroup.controls['password'].valid" [class.is-invalid]="!fbFormGroup.controls['password'].valid &&
+          fbFormGroup.controls['password'].touched" />
+          <small id="passwordHelpId" class="form-text text-muted">*Required</small>
+        </div>
+        <div class="form-group">
+          <label for="cpwd">Confirm New Password</label>
+          <input type="password" class="form-control" name="cpwd" id="cpwd" placeholder="Confirm New Password" minlength="8" maxlength="20" required formControlName="cpassword" [class.is-valid]="fbFormGroup.controls['cpassword'].valid" [class.is-invalid]="!fbFormGroup.controls['cpassword'].valid &&
+          fbFormGroup.controls['cpassword'].touched" />
+          <small id="cpasswordHelpId" class="form-text text-muted">*Required</small>
+        </div>
+        <div class="form-group">
+          <button type="submit" [disabled]="!fbFormGroup.valid" class="btn btn-warning">Update Password</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-5 bg-light shadow px-4 pt-4">
+      <h4 class="display-4">
+        <fa-icon [icon]="faAddressBook"></fa-icon> Delete Account
+      </h4>
+      <p class="text-secondary">Your account will be deleted.</p>
+      <hr>
+      <form (submit)="delAcc()">
+        <div class="form-group">
+          <button type="submit" class="btn btn-warning">UDelete Account</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
