@@ -14,6 +14,8 @@ import { AboutComponent } from './about/about.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { GeolocationComponent } from './geolocation/geolocation.component';
+import { AccountdetailsComponent } from './accountdetails/accountdetails.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { GeolocationComponent } from './geolocation/geolocation.component';
     ForgotpasswordComponent,
     PagenotfoundComponent,
     GeolocationComponent,
+    AccountdetailsComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

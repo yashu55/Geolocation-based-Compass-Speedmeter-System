@@ -59,8 +59,8 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('email', data.email);
         //Session expiring code
         setTimeout(() => {
-          sessionStorage.removeItem(data.email);
-          sessionStorage.removeItem(data.sid);
+          sessionStorage.removeItem('email');
+          sessionStorage.removeItem('sid');
           alert('Session Expired!!');
           this.router.navigate(['login']);
         }, 1000000);

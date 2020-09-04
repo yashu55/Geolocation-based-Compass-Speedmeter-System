@@ -6,13 +6,24 @@ import { AboutComponent } from './about/about.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { GeolocationComponent } from './geolocation/geolocation.component';
+import { AccountdetailsComponent } from './accountdetails/accountdetails.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'about', component: AboutComponent },
   { path: 'forgotpassword', component: ForgotpasswordComponent },
-  { path: 'geolocation', component: GeolocationComponent },
+  {
+    path: 'home',
+    component: HomeComponent,
+    children: [
+      { path: '', component: GeolocationComponent },
+      { path: 'geolocation', component: GeolocationComponent },
+
+      { path: 'accountdetails', component: AccountdetailsComponent },
+    ],
+  },
 
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: PagenotfoundComponent },

@@ -90,7 +90,7 @@ export class ForgotpasswordComponent implements OnInit {
     const data = this.fbFormGroup.value;
     const url = 'http://localhost:3000/forgotpassword';
     try {
-      const result: any = await this.http.post(url, data).toPromise();
+      const result: any = await this.http.patch(url, data).toPromise();
       if (result.message) {
         alert('Password Reset Successfully.');
         this.fbFormGroup.reset();
