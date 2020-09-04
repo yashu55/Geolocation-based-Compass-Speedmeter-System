@@ -58,22 +58,24 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('sid', 'true');
         sessionStorage.setItem('email', data.email);
         //Session expiring code
-        setTimeout(() => {
-          sessionStorage.removeItem('email');
-          sessionStorage.removeItem('sid');
-          alert('Session Expired!!');
-          this.router.navigate(['login']);
-        }, 1000000);
+        // setTimeout(() => {
+        //   sessionStorage.removeItem('email');
+        //   sessionStorage.removeItem('sid');
+        //   alert('Session Expired!!');
+        //   this.router.navigate(['login']);
+        // }, 1000000);
 
-        this.router.navigate(['geolocation']);
-      } else if (result.opr == 'incorrect') {
+        this.router.navigate(['home']);
+      } else if (result.opr === false) {
         this.responseVar = 'Invalid email or password!!';
         this.uiInvalidCredential = true;
+        this.fbFormGroup.reset();
       }
     } catch (err) {
       this.responseVar =
         ':-( Unable to connect to server. Please try again later.';
       this.uiInvalidCredential = true;
+      this.fbFormGroup.reset();
     }
 
     return false;
