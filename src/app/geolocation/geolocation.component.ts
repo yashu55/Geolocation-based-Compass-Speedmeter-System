@@ -36,7 +36,7 @@ export class GeolocationComponent implements OnInit {
   public transformValue: any = 'NA';
   watchUserPos() {
     if (navigator.geolocation) {
-      setInterval(() => {
+      let intervalID = setInterval(() => {
         if (this.headingValue > 359) this.headingValue = 0;
         this.headingValue += 5;
         navigator.geolocation.getCurrentPosition(
@@ -164,7 +164,9 @@ export class GeolocationComponent implements OnInit {
             //alert('Hey, you gotta allow that to happen!');
           }
         );
-      }, 3000);
+      }, 5000);
+      console.log(intervalID);
+      sessionStorage.setItem('intervalID', intervalID.toString());
     }
   }
 }

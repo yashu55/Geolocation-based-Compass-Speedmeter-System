@@ -33,6 +33,9 @@ export class AccountdetailsComponent implements OnInit {
   public mobile = 'NA';
 
   async ngOnInit() {
+    if (!sessionStorage.getItem('sid')) {
+      this.router.navigate(['login']);
+    }
     try {
       const url = 'http://localhost:3000/details';
       const result: any = await this.http.post(url, this.email).toPromise();

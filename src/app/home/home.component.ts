@@ -10,7 +10,6 @@ import { faCompass } from '@fortawesome/free-solid-svg-icons';
 export class HomeComponent implements OnInit {
   constructor(private router: Router) {}
   public faCompass = faCompass;
-
   ngOnInit(): void {
     if (!sessionStorage.getItem('sid')) {
       this.router.navigate(['login']);
@@ -19,11 +18,13 @@ export class HomeComponent implements OnInit {
 
   logoutProcess() {
     if (confirm('Do you want to logout?')) {
-      for (let i = 0; i < 1000; i++) {
+      sessionStorage.removeItem('sid');
+      for (let i = 0; i < 100; i++) {
         window.clearInterval(i);
       }
-      sessionStorage.removeItem('sid');
       sessionStorage.removeItem('email');
+      sessionStorage.removeItem('intervalID');
+      sessionStorage.clear();
       this.router.navigate(['login']);
     }
   }
