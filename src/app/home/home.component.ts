@@ -19,6 +19,9 @@ export class HomeComponent implements OnInit {
 
   logoutProcess() {
     if (confirm('Do you want to logout?')) {
+      for (let i = 0; i < 1000; i++) {
+        window.clearInterval(i);
+      }
       sessionStorage.removeItem('sid');
       sessionStorage.removeItem('email');
       this.router.navigate(['login']);
