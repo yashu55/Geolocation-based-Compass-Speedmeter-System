@@ -1,4 +1,5 @@
-# Prapp
+# Mean_Stack_Final Project
+# GEOLOCATION BASED COMPASS AND SPEEDOMETER
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.8.
 
