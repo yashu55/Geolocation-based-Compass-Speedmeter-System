@@ -38,7 +38,14 @@ export class AccountdetailsComponent implements OnInit {
     }
     try {
       const url = 'http://localhost:3000/details';
-      const result: any = await this.http.post(url, this.email).toPromise();
+      let data3: any = {};
+      data3.email = this.email;
+      console.log(data3);
+      let result: any = await this.http.post(url, data3).toPromise();
+      result = result[0];
+      this.firstname = result.firstname;
+      this.lastname = result.lastname;
+      this.mobile = result.mobile;
     } catch (err) {}
   }
 
@@ -103,17 +110,19 @@ export class AccountdetailsComponent implements OnInit {
   );
 
   async Updatepass() {
-    const data = this.fbFormGroup.value;
+    let data = this.fbFormGroup.value;
+    data.email = this.email;
+    console.log(data);
     const url = 'http://localhost:3000/updatepassword';
     try {
-      const result: any = await this.http.patch(url, data).toPromise();
+      const result: any = await this.http.post(url, data).toPromise();
+      console.log(result);
       if (result.message) {
         alert('Password Reset Successfully.');
         this.fbFormGroup.reset();
-        this.router.navigate(['login']);
-      } else if (result.message == 'failure') {
+      } else if (!result.message) {
         this.fbFormGroup.reset();
-        this.responseVar = 'There was some failure while updating';
+        this.responseVar = 'Incorrect old password entred!!';
         this.uiInvalidCredential = true;
         this.errorDiv = false;
       }
@@ -129,5 +138,42 @@ export class AccountdetailsComponent implements OnInit {
     return false;
   }
 
-  async delAcc() {}
+  async delAcc() {
+    if (confirm('Do you really want to delete the account?')) {
+      let data2: any = {};
+      data2.email = this.email;
+      console.log(data2);
+      const url = 'http://localhost:3000/deleteaccount';
+      try {
+        const result: any = await this.http.post(url, data2).toPromise();
+        console.log(result);
+        if (result.message) {
+          alert('Account Deleted.Thanks for using our service!!:-)');
+          this.fbFormGroup.reset();
+          sessionStorage.removeItem('sid');
+          for (let i = 0; i < 100; i++) {
+            window.clearInterval(i);
+          }
+          sessionStorage.removeItem('email');
+          sessionStorage.removeItem('intervalID');
+          sessionStorage.clear();
+          this.router.navigate(['login']);
+        } else if (!result.message) {
+          this.fbFormGroup.reset();
+          this.responseVar = 'Unable to delete account. Try again later';
+          this.uiInvalidCredential = true;
+          this.errorDiv = false;
+        }
+      } catch (err) {
+        this.fbFormGroup.reset();
+        console.log('Unable to connect to server');
+        this.responseVar =
+          ':-( Unable to connect to server. Please try again later.';
+        this.uiInvalidCredential = true;
+        this.errorDiv = false;
+      }
+
+      return false;
+    }
+  }
 }

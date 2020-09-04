@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
         Validators.minLength(8),
         Validators.maxLength(20),
         Validators.pattern(
-          '^(?=.*[\\d])(?=.*[a-z])(?=.*[A-Z])(?!.*[\\s]).{6,12}$'
+          '^(?=.*[\\d])(?=.*[a-z])(?=.*[A-Z])(?!.*[\\s]).{8,20}$'
         ),
         //  Validators.pattern('^(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$'),
       ],
