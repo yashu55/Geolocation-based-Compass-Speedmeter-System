@@ -18,14 +18,14 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
     children: [
-      { path: '', component: GeolocationComponent },
       { path: 'geolocation', component: GeolocationComponent },
-
       { path: 'accountdetails', component: AccountdetailsComponent },
+      { path: '', redirectTo: '/home/geolocation', pathMatch: 'full' },
     ],
   },
 
   { path: '', redirectTo: '/login', pathMatch: 'full' },
+
   { path: '**', component: PagenotfoundComponent },
 ];
 
