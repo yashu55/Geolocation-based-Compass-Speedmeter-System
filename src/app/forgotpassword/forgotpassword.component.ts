@@ -90,20 +90,14 @@ export class ForgotpasswordComponent implements OnInit {
     const data = this.fbFormGroup.value;
     const url = 'http://localhost:3000/forgotpassword';
     try {
-      const result: any = await this.http.patch(url, data).toPromise();
+      const result: any = await this.http.post(url, data).toPromise();
       if (result.message) {
         alert('Password Reset Successfully.');
         this.fbFormGroup.reset();
         this.router.navigate(['login']);
-      } else if (result.message == 'wrongsecurityanswer') {
+      } else if (!result.message) {
         this.fbFormGroup.reset();
-        this.responseVar =
-          'You cannot change the password!! Security question and answer is incorrect.';
-        this.uiInvalidCredential = true;
-        this.errorDiv = false;
-      } else if (result.message == 'emailidnotavailable') {
-        this.fbFormGroup.reset();
-        this.responseVar = 'Email id not registered!!';
+        this.responseVar = 'Invaid Credentials!! Please try again.';
         this.uiInvalidCredential = true;
         this.errorDiv = false;
       }
