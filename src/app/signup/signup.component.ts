@@ -62,6 +62,8 @@ export class SignupComponent implements OnInit {
           ),
         ],
       ],
+      securityquestion: ['', Validators.required],
+      answer: ['', [Validators.required, Validators.maxLength(30)]],
       password: [
         '',
         [
@@ -111,7 +113,7 @@ export class SignupComponent implements OnInit {
 
   async registerHere() {
     const data = this.fbFormGroupSignup.value;
-    console.log(data);
+    // console.log(data);
     const url = 'http://localhost:3000/adduser';
     try {
       const result: any = await this.http.post(url, data).toPromise();

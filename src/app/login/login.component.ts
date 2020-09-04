@@ -56,6 +56,15 @@ export class LoginComponent implements OnInit {
       const result: any = await this.http.post(url, data).toPromise();
       if (result.opr) {
         sessionStorage.setItem('sid', 'true');
+        sessionStorage.setItem('email', data.email);
+        //Session expiring code
+        setTimeout(() => {
+          sessionStorage.removeItem(data.email);
+          sessionStorage.removeItem(data.sid);
+          alert('Session Expired!!');
+          this.router.navigate(['login']);
+        }, 1000000);
+
         this.router.navigate(['geolocation']);
       } else if (result.opr == 'incorrect') {
         this.responseVar = 'Invalid email or password!!';

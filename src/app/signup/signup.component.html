@@ -39,6 +39,24 @@
               fbFormGroupSignup.controls['mobile'].touched" />
           <small id="mobile" class="text-muted">*Required</small>
         </div>
+
+        <div class="form-group">
+          <label for="securityQuestion">Security Question</label>
+          <select class="form-control" id="SecurityQS" formControlName="securityquestion">
+            <option>What is your favourite color?</option>
+            <option>Where is your birthplace?</option>
+            <option>Who is your favourite teacher?</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="answer">Answer</label>
+          <input type="text" class="form-control" name="answer" id="answer" aria-describedby="answerHelpId" placeholder="Your answer" maxlength="30" required formControlName="answer" [class.is-valid]="fbFormGroupSignup.controls['answer'].valid" [class.is-invalid]="!fbFormGroupSignup.controls['answer'].valid &&
+          fbFormGroupSignup.controls['answer'].touched" />
+          <small id="answerHelpId" class="form-text text-muted">*Required</small>
+        </div>
+
+
+
         <div class="form-group">
           <label for="pwd">Password</label>
           <input type="password" class="form-control" name="pwd" id="pwd" placeholder="Password" minlength="8" maxlength="20" required formControlName="password" [class.is-valid]="fbFormGroupSignup.controls['password'].valid" [class.is-invalid]="!fbFormGroupSignup.controls['password'].valid &&
@@ -49,7 +67,7 @@
           <label for="cpwd">Confirm Password</label>
           <input type="password" class="form-control" name="cpwd" id="cpwd" placeholder="Confirm Password" minlength="8" maxlength="20" required formControlName="cpassword" [class.is-valid]="fbFormGroupSignup.controls['cpassword'].valid" [class.is-invalid]="!fbFormGroupSignup.controls['cpassword'].valid &&
               fbFormGroupSignup.controls['cpassword'].touched" />
-          <small id="passwordHelpId" class="form-text text-muted">*Required</small>
+          <small id="cpasswordHelpId" class="form-text text-muted">*Required</small>
         </div>
         <div class="form-group">
           <button type="submit" class="btn btn-success mr-1" [disabled]="!fbFormGroupSignup.valid">
