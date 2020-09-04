@@ -4,7 +4,8 @@
     <!--Geo Page -->
     <div class="col-md-7 bg-light shadow p-4 my-2">
       <h1>
-        <i class="fa fa-compass"></i> GPS Compass</h1>
+        <fa-icon [icon]="faCompass"></fa-icon> GPS Compass
+      </h1>
       <p class="text-secondary">Your navigation tool.</p>
       <hr>
       <div class="compassContainer container-fluid">
@@ -47,7 +48,9 @@
     </div>
 
     <div class="col-md-4 bg-light shadow p-4 my-2">
-      <h1> <i class="fa fa-tachometer"></i> GPS Speedometer</h1>
+      <h1>
+        <fa-icon [icon]="faTachometerAlt"></fa-icon> GPS Speedometer
+      </h1>
       <p class="text-secondary">Take a Speed test.</p>
       <hr>
       <p class="text-center font-weight-bolder">
@@ -61,10 +64,16 @@
 
   <div class="row justify-content-around my-2">
     <div class="col-md-11 bg-light shadow p-4">
-      <h1> <i class="fa fa-map-marker"></i> Location</h1>
+      <h1>
+        <fa-icon [icon]="faMapMarker"></fa-icon> Location
+      </h1>
       <p class="text-secondary">This is your current location.</p>
       <hr>
-      <div class="container-fluid" id="map"></div>
+      <div class="container-fluid" id="map">
+        <agm-map [latitude]="lat" [longitude]="lng">
+          <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+        </agm-map>
+      </div>
     </div>
   </div>
 </div>

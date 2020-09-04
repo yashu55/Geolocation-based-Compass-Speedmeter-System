@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { faCompass } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCompass,
+  faMapMarker,
+  faLocationArrow,
+  faTachometerAlt,
+} from '@fortawesome/free-solid-svg-icons';
+import { faMap } from '@fortawesome/free-regular-svg-icons';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,15 +23,21 @@ export class GeolocationComponent implements OnInit {
 
     this.watchUserPos();
   }
+  lat;
+  lng;
   public faCompass = faCompass;
+  public faMapMarker = faMapMarker;
+  public faTachometerAlt = faTachometerAlt;
+
   public speed: any = 'NA';
   public headingValue: any = 0;
-  public latValue: any = 'NA';
-  public lonValue: any = 'NA';
+  public latValue = 0;
+  public lonValue = 0;
   public transformValue: any = 'NA';
   watchUserPos() {
     if (navigator.geolocation) {
       setInterval(() => {
+        if (this.headingValue > 359) this.headingValue = 0;
         this.headingValue += 5;
         navigator.geolocation.getCurrentPosition(
           (data) => {
@@ -33,8 +45,8 @@ export class GeolocationComponent implements OnInit {
             if (data.coords.speed != null) this.speed = data.coords.speed; //updating data
             if (data.coords.heading != null)
               this.headingValue = data.coords.heading; //updating data
-            this.latValue = data.coords.latitude; //updating data
-            this.lonValue = data.coords.longitude; //updating data
+            this.latValue = this.lat = data.coords.latitude; //updating data
+            this.lonValue = this.lng = data.coords.longitude; //updating data
             if (this.headingValue != 'NA') {
               let val = this.headingValue + 'deg';
               this.transformValue = 'rotate(' + val + ')';
